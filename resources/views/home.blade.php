@@ -30,5 +30,30 @@
   </div>
 </div>
 
+<script>
+  $(document).ready(function(){
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'),
+        'Accept' : 'application/json',
+        'Authorization' : '{{$data['access_type'].' '.$data['access_token']}}'
+      }
+    });
+
+    $.ajax({
+      url : 'http://localhost:8000/api/all-users',
+      type: 'get',
+      success: function(response)
+      {
+          console.log(response.data);
+      }
+    });
+
+
+
+
+  });
+</script>
+
 </body>
 </html>
